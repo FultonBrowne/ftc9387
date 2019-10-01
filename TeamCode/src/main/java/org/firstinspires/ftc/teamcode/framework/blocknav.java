@@ -8,7 +8,7 @@ public class blocknav {
        return imageBlockMap.get(currentBlock);
    }
    private Map<Integer, Integer> imageBlockMap= new HashMap<Integer, Integer>(){{
-       put(1, 4);
+       put(1,4);
        put(2,5);
        put(3,6);
        put(4,1);
