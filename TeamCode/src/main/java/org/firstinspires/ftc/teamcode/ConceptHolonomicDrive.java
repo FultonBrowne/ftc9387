@@ -38,10 +38,11 @@ public class ConceptHolonomicDrive extends OpMode {
     DcMotor motorFrontLeft;
     DcMotor motorBackRight;
     DcMotor motorBackLeft;
+
    // DcMotor motorMotorarm;
     //DcMotor motorMotorRealarm;
-    CRServo servo1;
-    Servo servo0;
+    //CRServo servo1;
+    //Servo servo0;
 
     /**
      * Constructor
@@ -67,8 +68,8 @@ public class ConceptHolonomicDrive extends OpMode {
         motorBackRight = hardwareMap.dcMotor.get("motor2");
         //motorMotorarm = hardwareMap.dcMotor.get("motor4");
         //motorMotorRealarm = hardwareMap.dcMotor.get("motor5");
-        servo1 = hardwareMap.crservo.get("servo1");
-        servo0 = hardwareMap.servo.get ("servo0");
+        //servo1 = hardwareMap.crservo.get("servo1");
+        //servo0 = hardwareMap.servo.get ("servo0");
         
         //These work without reversing (Tetrix motors).
         //AndyMark motors may be opposite, in which case uncomment these lines:
@@ -103,9 +104,6 @@ public class ConceptHolonomicDrive extends OpMode {
         boolean gamepad2DpadDown = gamepad2.dpad_down;
         boolean gamepad2DpadLeft = gamepad2.dpad_right;
         boolean gamepad2DpadRight = gamepad2.dpad_left;
-        
-
-
         // holonomic formulas
 
         float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
@@ -125,7 +123,7 @@ public class ConceptHolonomicDrive extends OpMode {
             
             
         }
-        if (gamepad2.dpad_down==false && gamepad2.dpad_up==false){
+        if (!gamepad2.dpad_down && gamepad2.dpad_up==false){
             //motorMotorarm.setPower(0.0);
             
             
@@ -149,12 +147,12 @@ public class ConceptHolonomicDrive extends OpMode {
        
         // end test new drive
         if (gamepad1.left_bumper){
-        servo1.setPower(0.0);
+        //servo1.setPower(0.0);
         
         
         }
         if (gamepad1.right_bumper){
-            servo1.setPower(1.0);
+            //servo1.setPower(1.0);
             ;
             
         }
