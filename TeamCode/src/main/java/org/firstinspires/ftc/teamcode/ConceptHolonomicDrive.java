@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 
@@ -41,7 +42,7 @@ public class ConceptHolonomicDrive extends OpMode {
    // DcMotor motorMotorarm;
     //DcMotor motorMotorRealarm;
     //CRServo servo1;
-    //Servo servo0;
+    Servo servo0;
 
     /**
      * Constructor
@@ -65,10 +66,7 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
-        //motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        //motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        //motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-        //motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        servo0 = hardwareMap.servo.get("servo0");
 
     }
 
@@ -89,6 +87,9 @@ public class ConceptHolonomicDrive extends OpMode {
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+        if(gamepad1.a){
+            servo0.setPosition(0.0);
+        }
         
 
         // clip the right/left values so that the values never exceed +/- 1
