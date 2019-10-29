@@ -12,7 +12,7 @@ import java.util.TimerTask;
 public class Week1AutoMode extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3, motor4;
     private Timer time;
-    private TimerTask initMove;
+    private TimerTask initMove, stop1;
 
     @Override
     public void init() {
@@ -27,6 +27,7 @@ public class Week1AutoMode extends OpMode {
 
     @Override
     public void loop() {
+        time.schedule(initMove, 0);
 
     }
     private void declareTimerTasks(){
@@ -36,6 +37,19 @@ public class Week1AutoMode extends OpMode {
                 new Move().left(motor0, motor1, motor2, motor3);
             }
         };
+        stop1 = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
+
+
 
     }
+    public void start(){
+        time.schedule(initMove,0);
+        time.schedule(stop1, 3000);
+    }
+
 }
