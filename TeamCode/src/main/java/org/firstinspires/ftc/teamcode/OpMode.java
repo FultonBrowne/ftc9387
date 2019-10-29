@@ -40,6 +40,12 @@ public class OpMode extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
             motor0.setPower(gamepad1.left_stick_x);
             motor2.setPower(gamepad1.left_stick_x);
         }
+        if (gamepad1.right_stick_x > 0.1 || gamepad1.right_stick_x < -0.1){
+            motor0.setPower(gamepad1.right_stick_x);
+            motor1.setPower(gamepad1.right_stick_x);
+            motor2.setPower(gamepad1.right_stick_x);
+            motor3.setPower(gamepad1.right_stick_x);
+        }
         else new Move().stop(motor0,motor1,motor2, motor3);
     }
 }
