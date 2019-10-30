@@ -7,14 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.teamcode.framework.Move
 import java.util.*
 
-@Autonomous(name = "move da plate")
-class Week1MovePlate: OpMode() {
+@Autonomous(name = "move da plate right")
+class MovePlateRight: OpMode() {
     private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;
     private  var motor2:DcMotor? = null
     private  var motor3:DcMotor? = null
     private  var motor4:DcMotor? = null
     var servo0:CRServo? = null
-     var time1: Timer? = null
+    var time1: Timer? = null
     private var initMove: TimerTask? = null
     private  var stop1:TimerTask? = null
     private var forward:TimerTask? = null
@@ -38,7 +38,7 @@ class Week1MovePlate: OpMode() {
     private fun declareTimerTasks() {
         initMove = object : TimerTask() {
             override fun run() {
-                Move().left(motor0, motor1, motor2, motor3)
+                Move().right(motor0, motor1, motor2, motor3)
             }
         }
         stop1 = object : TimerTask() {
