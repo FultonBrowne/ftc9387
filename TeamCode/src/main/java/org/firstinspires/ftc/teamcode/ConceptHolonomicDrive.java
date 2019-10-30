@@ -66,7 +66,6 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
-        servo0 = hardwareMap.servo.get("servo0");
 
     }
 
