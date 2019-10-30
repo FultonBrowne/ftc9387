@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.framework;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -37,5 +38,11 @@ public class Move {
     }
     public void setServoPos(Servo servo,Double pos){
         servo.setPosition(pos);
+    }
+    public void moveCrServo(CRServo crServo){
+        crServo.setPower(1.0);
+    }
+    public void StopCrServo(CRServo crServo){
+        crServo.setPower(0.0);
     }
 }
