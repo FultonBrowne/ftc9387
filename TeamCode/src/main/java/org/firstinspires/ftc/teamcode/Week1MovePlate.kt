@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.teamcode.framework.Move
 import java.util.*
 
-@Autonomous(name = "move da plate")
+@Autonomous(name = "move da plate right")
 class Week1MovePlate: OpMode() {
     private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;
     private  var motor2:DcMotor? = null
