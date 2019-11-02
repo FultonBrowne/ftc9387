@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Move {
 
     public void stop(DcMotor motor0, DcMotor motor1, DcMotor motor2, DcMotor motor3){
@@ -39,10 +41,13 @@ public class Move {
     public void setServoPos(Servo servo,Double pos){
         servo.setPosition(pos);
     }
-    public void moveCrServo(CRServo crServo){
-        crServo.setPower(1.0);
+    public void movePlate(DcMotor crServo, Double speed){
+        crServo.setPower(speed);
     }
-    public void StopCrServo(CRServo crServo){
+    public void crON(CRServo crServo, double power){
+        crServo.setPower(power);
+    }
+    public void StopCrServo(DcMotor crServo){
         crServo.setPower(0.0);
     }
 }

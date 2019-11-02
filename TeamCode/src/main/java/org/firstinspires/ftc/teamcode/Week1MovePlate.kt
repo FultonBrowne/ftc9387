@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.qualcomm.robotcore.hardware.CRServo
 import com.qualcomm.robotcore.hardware.DcMotor
-import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.teamcode.framework.Move
 import java.util.*
 
-@Autonomous(name = "move da plate right")
+@Autonomous(name = "move da plate")
 class Week1MovePlate: OpMode() {
     private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;
     private  var motor2:DcMotor? = null
@@ -30,6 +29,7 @@ class Week1MovePlate: OpMode() {
         motor2 = hardwareMap.dcMotor["motor2"]
         motor3 = hardwareMap.dcMotor["motor3"]
         servo0 = hardwareMap.crservo["servo0"]
+        motor4 = hardwareMap.dcMotor["motor4"]
         time1 = Timer()
         declareTimerTasks()
 
@@ -68,12 +68,12 @@ class Week1MovePlate: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().moveCrServo(servo0)
+                Move().movePlate(motor4, 1.0)
             }
         }
         servoStop = object : TimerTask() {
             override fun run() {
-                Move().StopCrServo(servo0)
+                Move().StopCrServo(motor4)
             }
         }
     }
