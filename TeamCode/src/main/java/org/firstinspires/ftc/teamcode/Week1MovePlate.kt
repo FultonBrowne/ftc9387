@@ -31,6 +31,7 @@ class Week1MovePlate: OpMode() {
         servo0 = hardwareMap.crservo["servo0"]
         motor4 = hardwareMap.dcMotor["motor4"]
         time1 = Timer()
+
         declareTimerTasks()
 
 
@@ -68,12 +69,12 @@ class Week1MovePlate: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().movePlate(motor4, 1.0)
+                Move().movePlate(motor4, -0.2)
             }
         }
         servoStop = object : TimerTask() {
             override fun run() {
-                Move().StopCrServo(motor4)
+                Move().stopPlate(motor4)
             }
         }
     }
@@ -84,7 +85,7 @@ class Week1MovePlate: OpMode() {
 
         time1?.schedule(initMove, 0)
         time1?.schedule(stop1, 1000)
-        time1?.schedule(forward, 1001)
+        time1?.schedule(forward, 1100)
         time1?.schedule(stop2, 5000)
         time1?.schedule(servo, 6000)
         time1?.schedule(servoStop,9000)

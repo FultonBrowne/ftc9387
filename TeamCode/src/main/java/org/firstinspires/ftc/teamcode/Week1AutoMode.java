@@ -28,6 +28,7 @@ public class Week1AutoMode extends OpMode {
     @Override
     public void loop() {
         time.schedule(initMove, 0);
+        time.schedule(stop1, 2000);
 
     }
     private void declareTimerTasks(){

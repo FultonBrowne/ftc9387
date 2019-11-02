@@ -68,12 +68,12 @@ class MovePlateRight: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().movePlate(motor4, 1.0)
+                Move().movePlate(motor4, -0.2)
             }
         }
         servoStop = object : TimerTask() {
             override fun run() {
-                Move().StopCrServo(motor4)
+                Move().stopPlate(motor4)
             }
         }
     }

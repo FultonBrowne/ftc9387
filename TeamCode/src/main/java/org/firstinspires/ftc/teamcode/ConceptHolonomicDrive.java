@@ -11,9 +11,11 @@ import android.annotation.SuppressLint;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.framework.Move;
 
 
 /*
@@ -30,7 +32,7 @@ import com.qualcomm.robotcore.util.Range;
         X           X
           X       X
 */
-@TeleOp(name = "RR_tele_op_2018", group = "Concept")
+@TeleOp(name = "comp1", group = "Concept")
 //@Disabled
 public class ConceptHolonomicDrive extends OpMode {
 
@@ -38,6 +40,9 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorFrontLeft;
     private DcMotor motorBackRight;
     private DcMotor motorBackLeft;
+    private DcMotor motor4;
+    CRServo crServo0;
+
 
    // DcMotor motorMotorarm;
     //DcMotor motorMotorRealarm;
@@ -66,6 +71,9 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
+        motor4 = hardwareMap.dcMotor.get("motor4");
+        crServo0 = hardwareMap.crservo.get("servo0");
+
 
     }
 
@@ -86,16 +94,22 @@ public class ConceptHolonomicDrive extends OpMode {
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        if(gamepad1.a){
-            servo0.setPosition(0.0);
+        if(gamepad2.a){
+            new Move().movePlate(motor4, 0.9);
         }
+        if(gamepad2.b){
+            new Move().movePlate(motor4, -0.9);
+        }
+
+        else new Move().stopPlate(motor4);
+        if (gamepad2.x) new Move().crON(crServo0, 1.0);
+        else if(gamepad2.y) new Move().crON(crServo0, -1.0);
+        else new Move().crON(crServo0, 0.0);
+
         
 
         // clip the right/left values so that the values never exceed +/- 1
-        FrontRight = Range.clip(FrontRight, -1, 1);
-        FrontLeft = Range.clip(FrontLeft, -1, 1);
-        BackLeft = Range.clip(BackLeft, -1, 1);
-        BackRight = Range.clip(BackRight, -1, 1);
+
         //motorarm = Range.clip(motorarm, -1, 1);
         //motorRealarm = Range.clip(motorRealarm, -1, 1);
         
