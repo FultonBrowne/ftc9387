@@ -6,7 +6,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -27,10 +26,10 @@ public class DriveJava extends LinearOpMode {
     BNO055IMU imu;
     @Override
     public void runOpMode() {
-        front_left_wheel = hardwareMap.dcMotor.get("front_left_wheel");
-        back_left_wheel = hardwareMap.dcMotor.get("back_left_wheel");
-        back_right_wheel = hardwareMap.dcMotor.get("back_right_wheel");
-        front_right_wheel = hardwareMap.dcMotor.get("front_right_wheel");
+        front_left_wheel = hardwareMap.dcMotor.get("motor0");
+        back_left_wheel = hardwareMap.dcMotor.get("motor1");
+        back_right_wheel = hardwareMap.dcMotor.get("motor2");
+        front_right_wheel = hardwareMap.dcMotor.get("motor3");
 
         front_left_wheel.setDirection(DcMotor.Direction.REVERSE);
         back_left_wheel.setDirection(DcMotor.Direction.REVERSE);
