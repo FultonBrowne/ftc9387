@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.framework;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.robocol.TelemetryMessage;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Color {

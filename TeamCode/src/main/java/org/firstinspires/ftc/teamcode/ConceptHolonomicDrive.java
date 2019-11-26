@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.framework.Move;
@@ -71,7 +72,11 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
-        motor4 = hardwareMap.dcMotor.get("motor4");
+        motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        //motor4 = hardwareMap.dcMotor.get("motor4");
         crServo0 = hardwareMap.crservo.get("servo0");
 
 
@@ -94,14 +99,6 @@ public class ConceptHolonomicDrive extends OpMode {
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        if(gamepad2.a){
-            new Move().movePlate(motor4, 0.9);
-        }
-        if(gamepad2.b){
-            new Move().movePlate(motor4, -0.9);
-        }
-
-        else new Move().stopPlate(motor4);
         if (gamepad2.x) new Move().crON(crServo0, 1.0);
         else if(gamepad2.y) new Move().crON(crServo0, -1.0);
         else new Move().crON(crServo0, 0.0);

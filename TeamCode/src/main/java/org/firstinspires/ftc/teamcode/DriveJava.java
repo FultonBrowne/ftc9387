@@ -62,7 +62,7 @@ public class DriveJava extends LinearOpMode {
         }
     }
     public void driveSimple(){
-        double power = .5;
+        double power = 1.0;
         if(gamepad1.dpad_up){ //Forward
             front_left_wheel.setPower(-power);
             back_left_wheel.setPower(-power);
@@ -87,7 +87,7 @@ public class DriveJava extends LinearOpMode {
             back_right_wheel.setPower(-power);
             front_right_wheel.setPower(power);
         }
-        else if(Math.abs(gamepad1.right_stick_x) > 0){ //Rotation
+        else if(gamepad1.right_stick_x > 0 || gamepad1.right_stick_x < 0){ //Rotation
             front_left_wheel.setPower(-gamepad1.right_stick_x);
             back_left_wheel.setPower(-gamepad1.right_stick_x);
             back_right_wheel.setPower(gamepad1.right_stick_x);
@@ -124,16 +124,16 @@ public class DriveJava extends LinearOpMode {
 
         //Linear directions in case you want to do straight lines.
         if(gamepad1.dpad_right){
-            stick_x = 0.5;
+            stick_x = 1.0;
         }
         else if(gamepad1.dpad_left){
-            stick_x = -0.5;
+            stick_x = -1.0;
         }
         if(gamepad1.dpad_up){
-            stick_y = -0.5;
+            stick_y = -1.0;
         }
         else if(gamepad1.dpad_down){
-            stick_y = 0.5;
+            stick_y = 1.0;
         }
 
 
