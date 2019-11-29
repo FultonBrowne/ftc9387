@@ -8,7 +8,8 @@ import java.util.*
 
 @Autonomous(name = "move the plate")
 class Week1MovePlate: OpMode() {
-    private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;
+    private var motor0: DcMotor? = null;
+    private  var motor1:DcMotor? = null;
     private  var motor2:DcMotor? = null
     private  var motor3:DcMotor? = null
     var servo0:CRServo? = null
@@ -67,7 +68,7 @@ class Week1MovePlate: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().crON(crServo0, 1.0)
+                Move().crON(crServo0, -1.0)
             }
         }
         servoStop = object : TimerTask() {

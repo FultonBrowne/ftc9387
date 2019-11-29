@@ -11,7 +11,6 @@ class MovePlateRight: OpMode() {
     private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;
     private  var motor2:DcMotor? = null
     private  var motor3:DcMotor? = null
-    private  var motor4:DcMotor? = null
     var servo0:CRServo? = null
     var time1: Timer? = null
     private var initMove: TimerTask? = null
@@ -28,7 +27,6 @@ class MovePlateRight: OpMode() {
         motor1 = hardwareMap.dcMotor["motor1"]
         motor2 = hardwareMap.dcMotor["motor2"]
         motor3 = hardwareMap.dcMotor["motor3"]
-        motor4 = hardwareMap.dcMotor["motor4"]
         servo0 = hardwareMap.crservo["servo0"]
         time1 = Timer()
         declareTimerTasks()
@@ -68,13 +66,12 @@ class MovePlateRight: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().movePlate(motor4, -0.2)
+                Move().crON(crServo0, -0.2)
             }
         }
         servoStop = object : TimerTask() {
             override fun run() {
-                Move().stopPlate(motor4)
-            }
+                Move().crON(crServo0, 0.0)            }
         }
     }
     override fun loop() {

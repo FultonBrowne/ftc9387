@@ -2,14 +2,16 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.framework.Move;
 
-@TeleOp(name = "2020main")
+@TeleOp(name = "2020 test 1")
 public class OpMode extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
     private DcMotor motor0, motor1, motor2, motor3, motor4;
+    private ColorSensor color1;
     CRServo crServo0;
     private Gamepad num1, num2;
 
@@ -19,7 +21,6 @@ public class OpMode extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
-        motor4 = hardwareMap.dcMotor.get("motor4");
         crServo0 = hardwareMap.crservo.get("servo0");
         motor1.setDirection(DcMotor.Direction.REVERSE);
         motor2.setDirection(DcMotor.Direction.REVERSE);
@@ -52,15 +53,16 @@ public class OpMode extends com.qualcomm.robotcore.eventloop.opmode.OpMode {
         else new Move().stop(motor0,motor1,motor2, motor3);
 
         if(gamepad2.a){
-            new Move().movePlate(motor4, 0.2);
+            new Move().crON(crServo0, 0.2);
         }
         if(gamepad2.b){
-            new Move().movePlate(motor4, -0.2);
+            new Move().crON(crServo0, -0.2);
         }
 
         else new Move().stopPlate(motor4);
         if (gamepad2.x) new Move().crON(crServo0, 1.0);
         else if(gamepad2.y) new Move().crON(crServo0, -1.0);
         else new Move().crON(crServo0, 0.0);
+
     }
 }

@@ -12,10 +12,12 @@ import android.annotation.SuppressLint;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
 
 
@@ -33,7 +35,7 @@ import org.firstinspires.ftc.teamcode.framework.Move;
         X           X
           X       X
 */
-@TeleOp(name = "comp1", group = "Concept")
+@TeleOp(name = "test and backup system", group = "LCARS 47")
 //@Disabled
 public class ConceptHolonomicDrive extends OpMode {
 
@@ -42,6 +44,7 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorBackRight;
     private DcMotor motorBackLeft;
     private DcMotor motor4;
+    private ColorSensor color0;
     CRServo crServo0;
 
 
@@ -72,6 +75,7 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
+        color0 = hardwareMap.colorSensor.get("color0");
         motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -134,6 +138,7 @@ public class ConceptHolonomicDrive extends OpMode {
         telemetry.addData("f right pwr", "front right pwr: " + String.format("%.2f", FrontRight));
         telemetry.addData("b right pwr", "back right pwr: " + String.format("%.2f", BackRight));
         telemetry.addData("b left pwr", "back left pwr: " + String.format("%.2f", BackLeft));
+        new Color().colors(color0, telemetry);
         
 
     }
