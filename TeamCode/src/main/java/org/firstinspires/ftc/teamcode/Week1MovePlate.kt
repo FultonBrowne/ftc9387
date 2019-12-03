@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.qualcomm.robotcore.hardware.CRServo
 import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.DcMotorSimple
 import org.firstinspires.ftc.teamcode.framework.Move
 import java.util.*
 
@@ -29,6 +30,11 @@ class Week1MovePlate: OpMode() {
         motor2 = hardwareMap.dcMotor["motor2"]
         motor3 = hardwareMap.dcMotor["motor3"]
         servo0 = hardwareMap.crservo["servo0"]
+        motor0?.direction = DcMotorSimple.Direction.REVERSE
+        motor1?.direction = DcMotorSimple.Direction.REVERSE
+        motor2?.direction = DcMotorSimple.Direction.REVERSE
+        motor3?.setDirection(DcMotorSimple.Direction.REVERSE)
+
         time1 = Timer()
 
         declareTimerTasks()
