@@ -44,7 +44,7 @@ public class CubeAutoLeft extends OpMode {
         initMove = new TimerTask() {
             @Override
             public void run() {
-                new Move().forward(motor0, motor1, motor2, motor3);
+                new Move().right(motor0, motor1, motor2, motor3);
             }
         };
         stop1 = new TimerTask() {
@@ -75,8 +75,8 @@ public class CubeAutoLeft extends OpMode {
     }
     public void start(){
         time.schedule(initMove, 0);
-        time.schedule(stop1, 3500);
-        time.schedule(search, 3600);
+        time.schedule(stop1, 2300);
+        time.schedule(search, 2400);
     }
 
 
