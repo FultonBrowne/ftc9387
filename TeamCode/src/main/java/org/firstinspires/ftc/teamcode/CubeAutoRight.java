@@ -16,7 +16,7 @@ public class CubeAutoRight extends OpMode {
     private Timer time;
     private ColorSensor colorSensor;
 
-    private TimerTask initMove, stop1, search;
+    private TimerTask initMove, stop1, search, stop2, spin, hitBlock,moveABit;
 
     @Override
     public void init() {
@@ -47,7 +47,31 @@ public class CubeAutoRight extends OpMode {
                 new Move().right(motor0, motor1, motor2, motor3);
             }
         };
+        moveABit = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().back(motor0, motor1, motor2, motor3);
+            }
+        };
+        spin= new TimerTask() {
+            @Override
+            public void run() {
+                new Move().spin(motor0,motor1, motor2, motor3);
+            }
+        };
+        hitBlock= new TimerTask() {
+            @Override
+            public void run() {
+                new Move().left(motor0, motor1, motor2, motor3);
+            }
+        };
         stop1 = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
+        stop2 = new TimerTask() {
             @Override
             public void run() {
                 new Move().stop(motor0, motor1, motor2, motor3);
@@ -75,8 +99,11 @@ public class CubeAutoRight extends OpMode {
     }
     public void start(){
         time.schedule(initMove, 0);
-        time.schedule(stop1, 2300);
-        time.schedule(search, 2400);
+        time.schedule(stop1, 2500);
+        time.schedule(search, 2600);
+        time.schedule(stop2, 4000);
+        time.schedule(moveABit, 4100);
+        time.schedule(hitBlock, 5100);
     }
 
 

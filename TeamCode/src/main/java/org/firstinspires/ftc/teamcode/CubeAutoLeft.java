@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,13 +10,13 @@ import org.firstinspires.ftc.teamcode.framework.Move;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+@Autonomous(name = "cube left")
 public class CubeAutoLeft extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;
     private Timer time;
     private ColorSensor colorSensor;
 
-    private TimerTask initMove, stop1, search;
+    private TimerTask initMove, stop1, search, moveABit, stop2, hitBlock, stop3;
 
     @Override
     public void init() {
@@ -23,7 +24,7 @@ public class CubeAutoLeft extends OpMode {
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
-        colorSensor = hardwareMap.colorSensor.get("color0");
+        colorSensor = hardwareMap.colorSensor.get("color1");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -52,6 +53,30 @@ public class CubeAutoLeft extends OpMode {
                 new Move().stop(motor0, motor1, motor2, motor3);
             }
         };
+        stop2 = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
+        stop3 = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
+        moveABit = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().back(motor0, motor1, motor2, motor3);
+            }
+        };
+        hitBlock= new TimerTask() {
+            @Override
+            public void run() {
+                new Move().left(motor0, motor1, motor2, motor3);
+            }
+        };
         search = new TimerTask() {
             @Override
             public void run() {
@@ -74,8 +99,12 @@ public class CubeAutoLeft extends OpMode {
     }
     public void start(){
         time.schedule(initMove, 0);
-        time.schedule(stop1, 2300);
-        time.schedule(search, 2400);
+        time.schedule(stop1, 2500);
+        time.schedule(search, 2600);
+        time.schedule(stop2, 4000);
+        time.schedule(moveABit, 4100);
+        time.schedule(hitBlock, 4600);
+        time.schedule(stop3, 5600);
     }
 
 
