@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,8 +10,8 @@ import org.firstinspires.ftc.teamcode.framework.Move;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-public class CubeAutoLeft extends OpMode {
+@Autonomous(name = "Cube right")
+public class CubeAutoRight extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;
     private Timer time;
     private ColorSensor colorSensor;
@@ -43,7 +44,7 @@ public class CubeAutoLeft extends OpMode {
         initMove = new TimerTask() {
             @Override
             public void run() {
-                new Move().left(motor0, motor1, motor2, motor3);
+                new Move().right(motor0, motor1, motor2, motor3);
             }
         };
         stop1 = new TimerTask() {
@@ -80,4 +81,3 @@ public class CubeAutoLeft extends OpMode {
 
 
 }
-
