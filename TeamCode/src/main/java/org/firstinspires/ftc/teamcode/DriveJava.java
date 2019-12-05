@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@TeleOp(name="driveJava", group="Pushbot")
+@TeleOp(name="Main drive!!!", group="Pushbot")
 public class DriveJava extends LinearOpMode {
 
     float rotate_angle = 0;
@@ -101,7 +101,7 @@ public class DriveJava extends LinearOpMode {
         }
     }
     public void drive() {
-        double Protate = gamepad1.right_stick_x/4;
+        double Protate = gamepad1.right_stick_x;
         double stick_x = gamepad1.left_stick_x * Math.sqrt(Math.pow(1-Math.abs(Protate), 2)/2); //Accounts for Protate when limiting magnitude to be less than 1
         double stick_y = gamepad1.left_stick_y * Math.sqrt(Math.pow(1-Math.abs(Protate), 2)/2);
         double theta = 0;
