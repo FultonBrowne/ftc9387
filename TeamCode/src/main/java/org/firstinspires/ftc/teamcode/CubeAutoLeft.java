@@ -68,7 +68,18 @@ public class CubeAutoLeft extends OpMode {
         moveABit = new TimerTask() {
             @Override
             public void run() {
-                new Move().back(motor0, motor1, motor2, motor3);
+                Boolean foundColor = false;
+                new Move().forward(motor0, motor1, motor2, motor3);
+                telemetry.addData("while is running", "");
+                while (!foundColor) {
+                    boolean scan = new Color().colors(colorSensor, telemetry);
+                    foundColor = scan;
+                    if (!scan) {
+                        telemetry.addData("is true", "");
+                        break;
+                    }
+                }
+                new Move().stop(motor0, motor1, motor2,motor3);
             }
         };
         hitBlock= new TimerTask() {
@@ -103,8 +114,8 @@ public class CubeAutoLeft extends OpMode {
         time.schedule(search, 2600);
         time.schedule(stop2, 4000);
         time.schedule(moveABit, 4100);
-        time.schedule(hitBlock, 4600);
-        time.schedule(stop3, 5600);
+        time.schedule(hitBlock, 5000);
+        time.schedule(stop3, 6000);
     }
 
 
