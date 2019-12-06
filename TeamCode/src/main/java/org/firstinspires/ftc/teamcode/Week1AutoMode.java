@@ -17,13 +17,13 @@ public class Week1AutoMode extends OpMode {
     private Timer time;
     private TimerTask initMove, stop1, search;
 
+
     @Override
     public void init() {
         motor0 = hardwareMap.dcMotor.get("motor0");
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
-
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);

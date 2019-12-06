@@ -11,7 +11,7 @@ public class Color {
         t.addData(Integer.toString(colorSensor.green()), "green");
         t.addData(Integer.toString(colorSensor.blue()), "blue");
         t.addData(Integer.toString(colorSensor.alpha()), "alpha");
-        if (colorSensor.alpha() < 100) toReturn = true;
+        if (colorSensor.alpha() < 30) toReturn = true;
         colorSensor.enableLed(true);
        // if (colorSensor)
         return toReturn;
