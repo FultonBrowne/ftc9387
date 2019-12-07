@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -25,10 +26,10 @@ public class CubeAutoRight extends OpMode {
     public static final int RANGE1_REG_START = 0x04; //Register to start reading
     public static final int RANGE1_READ_LENGTH = 2; //Number of byte to read
 
-    public I2cDevice range0;
+    public ModernRoboticsI2cRangeSensor range0;
     public I2cDeviceSynch RANGE1Reader;
 
-    private TimerTask initMove, stop1, search, stop2, spin, hitBlock,moveABit, stop3, moveOut, moveIn, hold, letGo, moveATiny, underBridge;
+    private TimerTask initMove, stop1, search, stop2, spin, hitBlock,moveABit, stop3, moveOut, moveIn, hold, letGo, moveATiny, underBridge, forward0, back0, stop4, stop5, forward1;
 
     @Override
     public void init() {
@@ -36,14 +37,12 @@ public class CubeAutoRight extends OpMode {
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
-        range0 = hardwareMap.i2cDevice.get("range0");
+        range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
         colorSensor = hardwareMap.colorSensor.get("color0");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
-        RANGE1Reader = new I2cDeviceSynchImpl(range0, RANGE1ADDRESS, false);
-        RANGE1Reader.engage();
 
         time = new Timer();
         declareTimerTasks();
@@ -51,14 +50,34 @@ public class CubeAutoRight extends OpMode {
 
     @Override
     public void loop() {
-        range1Cache = RANGE1Reader.read(RANGE1_REG_START, RANGE1_READ_LENGTH);
-
-        telemetry.addData("Ultra Sonic", range1Cache[0] & 0xFF);
-        telemetry.addData("ODS", range1Cache[1] & 0xFF);
 
     }
 
     private void declareTimerTasks() {
+        stop5  = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
+       forward0  = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().forward(motor0, motor1, motor2, motor3);
+            }
+        };
+        forward1  = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().forward(motor0, motor1, motor2, motor3);
+            }
+        };
+        back0  = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().back(motor0, motor1, motor2, motor3);
+            }
+        };
         moveOut = new TimerTask() {
             @Override
             public void run() {
@@ -74,7 +93,7 @@ public class CubeAutoRight extends OpMode {
         hold = new TimerTask() {
             @Override
             public void run() {
-                //new Move().left(motor0, motor1, motor2, motor3);
+                new Move().stop(motor0, motor1, motor2, motor3);
             }
         };
         letGo = new TimerTask() {
@@ -120,12 +139,12 @@ public class CubeAutoRight extends OpMode {
             @Override
             public void run() {
                 Boolean foundColor = false;
-                new Move().back(motor0, motor1, motor2, motor3);
+                new Move().forward(motor0, motor1, motor2, motor3);
                 telemetry.addData("while is running", "");
-                while (range1Cache[0] > 40) {
-                    boolean scan = new Color().colors(colorSensor, telemetry);
+                while (true) {
+                    boolean scan = range0.rawUltrasonic() < 40;
                     foundColor = scan;
-                    if (!scan) {
+                    if (scan) {
                         telemetry.addData("is true", "");
                         break;
                     }
@@ -181,6 +200,12 @@ public class CubeAutoRight extends OpMode {
                 new Move().stop(motor0, motor1, motor2, motor3);
             }
         };
+        stop4 = new TimerTask() {
+            @Override
+            public void run() {
+                new Move().stop(motor0, motor1, motor2, motor3);
+            }
+        };
     }
     public void start(){
         time.schedule(initMove, 0);
@@ -191,12 +216,16 @@ public class CubeAutoRight extends OpMode {
         time.schedule(moveABit, 7100);
         time.schedule(moveATiny, 9500);
         time.schedule(hitBlock, 10000);
-        time.schedule(stop3, 11000);
-        time.schedule(hold, 11100);
-        time.schedule(moveOut, 11600);
-        time.schedule(moveIn,13400);
-        time.schedule(letGo, 17000);
-    time.schedule(underBridge,17100);}
+        time.schedule(forward1, 11000);
+        time.schedule(hold, 11800);
+        time.schedule(moveOut, 14200);
+        time.schedule(underBridge,16000);
+        time.schedule(stop5, 22400);
+        time.schedule(forward0, 22500);
+        time.schedule(letGo, 23500);
+        time.schedule(back0,25700);
+        time.schedule(stop4, 26700);
+    }
 
 
 }
