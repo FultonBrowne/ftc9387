@@ -5,12 +5,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.teamcode.framework.Move;
 
 @TeleOp(name="Main drive!!!", group="Pushbot")
 public class DriveJava extends LinearOpMode {
@@ -22,6 +24,8 @@ public class DriveJava extends LinearOpMode {
     private DcMotor back_left_wheel = null;
     private DcMotor back_right_wheel = null;
     private DcMotor front_right_wheel = null;
+    private DcMotor arm = null;
+    private CRServo claw = null;
 
     BNO055IMU imu;
     @Override
@@ -30,6 +34,9 @@ public class DriveJava extends LinearOpMode {
         back_left_wheel = hardwareMap.dcMotor.get("motor1");
         back_right_wheel = hardwareMap.dcMotor.get("motor2");
         front_right_wheel = hardwareMap.dcMotor.get("motor3");
+        arm = hardwareMap.dcMotor.get("motor4");
+        claw = hardwareMap.crservo.get("servo1");
+
 
         front_left_wheel.setDirection(DcMotor.Direction.REVERSE);
         back_left_wheel.setDirection(DcMotor.Direction.REVERSE);
@@ -124,17 +131,25 @@ public class DriveJava extends LinearOpMode {
 
         //Linear directions in case you want to do straight lines.
         if(gamepad1.dpad_right){
-            stick_x = 1.0;
-        }
-        else if(gamepad1.dpad_left){
             stick_x = -1.0;
         }
-        if(gamepad1.dpad_up){
-            stick_y = -1.0;
+        else if(gamepad1.dpad_left){
+            stick_x = 1.0;
         }
-        else if(gamepad1.dpad_down){
+        if(gamepad1.dpad_up){
             stick_y = 1.0;
         }
+        else if(gamepad1.dpad_down){
+            stick_y = -1.0;
+        }
+        if ((gamepad2.dpad_left))  new Move().crON(claw, 1.0);
+        else if (gamepad2.dpad_right) new Move().crON(claw, -1.0);
+        else  new Move().crON(claw, 0.0);
+        if ((gamepad2.dpad_up))  arm.setPower(0.4);
+        else if (gamepad2.dpad_down) arm.setPower(-0.4);
+        else  arm.setPower(0.0);
+
+
 
 
         //MOVEMENT

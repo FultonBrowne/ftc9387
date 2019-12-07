@@ -74,6 +74,12 @@ public class Move {
     public void crON(CRServo crServo, double power){
         crServo.setPower(power);
     }
+    public void openClaw(CRServo servo0){
+        servo0.setPower(-1.0);
+    }
+    public void closeClaw(CRServo servo0){
+        servo0.setPower(1.0);
+    }
     public void stopPlate(DcMotor crServo){
         crServo.setPower(0.0);
     }

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -15,6 +16,7 @@ import java.util.TimerTask;
 public class CubeAutoLeft extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;
     private Timer time;
+    private CRServo servo1;
     private ColorSensor colorSensor;
     private ModernRoboticsI2cRangeSensor range0;
 
@@ -26,6 +28,7 @@ public class CubeAutoLeft extends OpMode {
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
+        servo1 = hardwareMap.crservo.get("servo1");
         colorSensor = hardwareMap.colorSensor.get("color1");
         range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -65,12 +68,14 @@ public class CubeAutoLeft extends OpMode {
         back0  = new TimerTask() {
             @Override
             public void run() {
+                new Move().crON(servo1, 0.0);
                 new Move().back(motor0, motor1, motor2, motor3);
             }
         };
         moveOut = new TimerTask() {
             @Override
             public void run() {
+                new Move().crON(servo1, 0.0);
                 new Move().right(motor0, motor1, motor2, motor3);
             }
         };
@@ -84,12 +89,14 @@ public class CubeAutoLeft extends OpMode {
             @Override
             public void run() {
                 new Move().stop(motor0, motor1, motor2, motor3);
+                new Move().openClaw(servo1);
             }
         };
         letGo = new TimerTask() {
             @Override
             public void run() {
                 new Move().stop(motor0, motor1, motor2, motor3);
+                new Move().closeClaw(servo1);
             }
         };
         moveATiny= new TimerTask() {

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -28,6 +29,7 @@ public class CubeAutoRight extends OpMode {
 
     public ModernRoboticsI2cRangeSensor range0;
     public I2cDeviceSynch RANGE1Reader;
+    public CRServo servo1;
 
     private TimerTask initMove, stop1, search, stop2, spin, hitBlock,moveABit, stop3, moveOut, moveIn, hold, letGo, moveATiny, underBridge, forward0, back0, stop4, stop5, forward1;
 
@@ -37,6 +39,7 @@ public class CubeAutoRight extends OpMode {
         motor1 = hardwareMap.dcMotor.get("motor1");
         motor2 = hardwareMap.dcMotor.get("motor2");
         motor3 = hardwareMap.dcMotor.get("motor3");
+        servo1 = hardwareMap.crservo.get("servo1");
         range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
         colorSensor = hardwareMap.colorSensor.get("color0");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -75,12 +78,14 @@ public class CubeAutoRight extends OpMode {
         back0  = new TimerTask() {
             @Override
             public void run() {
+                new Move().crON(servo1, 0.0);
                 new Move().back(motor0, motor1, motor2, motor3);
             }
         };
         moveOut = new TimerTask() {
             @Override
             public void run() {
+                new Move().crON(servo1, 0.0);
                 new Move().left(motor0, motor1, motor2, motor3);
             }
         };
@@ -94,12 +99,14 @@ public class CubeAutoRight extends OpMode {
             @Override
             public void run() {
                 new Move().stop(motor0, motor1, motor2, motor3);
+                new Move().openClaw(servo1);
             }
         };
         letGo = new TimerTask() {
             @Override
             public void run() {
                 new Move().stop(motor0, motor1, motor2, motor3);
+                new Move().closeClaw(servo1);
             }
         };
         moveATiny= new TimerTask() {
