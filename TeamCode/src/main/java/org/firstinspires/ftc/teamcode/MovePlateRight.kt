@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.hardware.CRServo
 import com.qualcomm.robotcore.hardware.DcMotor
 import org.firstinspires.ftc.teamcode.framework.Move
@@ -22,7 +23,6 @@ class MovePlateRight: OpMode() {
     private var stop2:TimerTask? = null
     private var back2:TimerTask? = null
     override fun init() {
-        super.init()
         motor0 = hardwareMap.dcMotor["motor0"]
         motor1 = hardwareMap.dcMotor["motor1"]
         motor2 = hardwareMap.dcMotor["motor2"]
@@ -66,12 +66,12 @@ class MovePlateRight: OpMode() {
         }
         servo = object : TimerTask() {
             override fun run() {
-                Move().crON(crServo0, -0.2)
+                Move().crON(servo0, -0.2)
             }
         }
         servoStop = object : TimerTask() {
             override fun run() {
-                Move().crON(crServo0, 0.0)            }
+                Move().crON(servo0, 0.0)            }
         }
     }
     override fun loop() {
