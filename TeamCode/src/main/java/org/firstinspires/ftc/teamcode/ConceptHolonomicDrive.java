@@ -43,8 +43,9 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorFrontLeft;
     private DcMotor motorBackRight;
     private DcMotor motorBackLeft;
-    private DcMotor motor4;
+    private DcMotor arm;
     private ColorSensor color0;
+    private CRServo claw;
     CRServo crServo0;
 
 
@@ -82,6 +83,8 @@ public class ConceptHolonomicDrive extends OpMode {
         motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
         //motor4 = hardwareMap.dcMotor.get("motor4");
         crServo0 = hardwareMap.crservo.get("servo0");
+        arm = hardwareMap.dcMotor.get("motor4");
+        claw = hardwareMap.crservo.get("servo1");
 
 
     }
@@ -106,23 +109,17 @@ public class ConceptHolonomicDrive extends OpMode {
         if (gamepad2.x) new Move().crON(crServo0, 1.0);
         else if(gamepad2.y) new Move().crON(crServo0, -1.0);
         else new Move().crON(crServo0, 0.0);
-
-        
-
-        // clip the right/left values so that the values never exceed +/- 1
-
-        //motorarm = Range.clip(motorarm, -1, 1);
-        //motorRealarm = Range.clip(motorRealarm, -1, 1);
-        
-        
-        //boolean part
-        // write the values to the motors
+        if ((gamepad2.dpad_left))  new Move().crON(claw, 1.0);
+        else if (gamepad2.dpad_right) new Move().crON(claw, -1.0);
+        else  new Move().crON(claw, 0.0);
+        if ((gamepad2.dpad_up))  arm.setPower(0.4);
+        else if (gamepad2.dpad_down) arm.setPower(-0.4);
+        else  arm.setPower(0.0);
         motorFrontRight.setPower(FrontRight);
         motorFrontLeft.setPower(FrontLeft);
         motorBackLeft.setPower(BackLeft);
         motorBackRight.setPower(BackRight);
-        //motorMotorarm.setPower(motorarm);
-       // motorMotorRealarm.setPower(motorRealarm);
+
         
 
 
