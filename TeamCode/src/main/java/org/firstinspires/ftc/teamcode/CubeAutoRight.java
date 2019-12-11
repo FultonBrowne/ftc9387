@@ -23,13 +23,8 @@ public class CubeAutoRight extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;
     private Timer time;
     private ColorSensor colorSensor;
-    byte[] range1Cache; //The read will return an array of bytes. They are stored in this variable
-    I2cAddr RANGE1ADDRESS = new I2cAddr(0x14); //Default I2C address for MR Range (7-bit)
-    public static final int RANGE1_REG_START = 0x04; //Register to start reading
-    public static final int RANGE1_READ_LENGTH = 2; //Number of byte to read
 
     public ModernRoboticsI2cRangeSensor range0;
-    public I2cDeviceSynch RANGE1Reader;
     public CRServo servo1;
 
     private TimerTask initMove, stop1, search, stop2, spin, hitBlock,moveABit, stop3, moveOut, moveIn, hold, letGo, moveATiny, underBridge, forward0, back0, stop4, stop5, forward1;

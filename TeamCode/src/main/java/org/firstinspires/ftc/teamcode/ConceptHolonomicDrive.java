@@ -115,6 +115,7 @@ public class ConceptHolonomicDrive extends OpMode {
         if ((gamepad2.dpad_up))  arm.setPower(0.4);
         else if (gamepad2.dpad_down) arm.setPower(-0.4);
         else  arm.setPower(0.0);
+
         motorFrontRight.setPower(FrontRight);
         motorFrontLeft.setPower(FrontLeft);
         motorBackLeft.setPower(BackLeft);
