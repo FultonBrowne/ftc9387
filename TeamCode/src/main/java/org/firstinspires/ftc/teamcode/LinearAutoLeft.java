@@ -7,34 +7,29 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
-
 @Autonomous
-public class LinearAutoRight extends LinearOpMode{
-    private ElapsedTime runtime = new ElapsedTime();
-
-    public ModernRoboticsI2cRangeSensor range0;
-    public CRServo servo1;
+public class LinearAutoLeft extends LinearOpMode
+{
 
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
         DcMotor motor0 = hardwareMap.dcMotor.get("motor0");
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
-        servo1 = hardwareMap.crservo.get("servo1");
-        range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
+        CRServo servo1 = hardwareMap.crservo.get("servo1");
+        ModernRoboticsI2cRangeSensor range0 = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "range0");
         ColorSensor colorSensor = hardwareMap.colorSensor.get("color0");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
-        new Move().right(motor0, motor1, motor2, motor3);
+        new Move().left(motor0, motor1, motor2, motor3);
         sleep(2700);
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running", "");
@@ -57,7 +52,7 @@ public class LinearAutoRight extends LinearOpMode{
         sleep(5400);
         new Move().spinOtherWay(motor0, motor1, motor2, motor3);
         sleep(25);
-        new Move().right(motor0, motor1, motor2, motor3);
+        new Move().left(motor0, motor1, motor2, motor3);
         sleep(1000);
         new Move().forward(motor0, motor1, motor2, motor3);
         sleep(700);
@@ -65,7 +60,7 @@ public class LinearAutoRight extends LinearOpMode{
         new Move().openClaw(servo1);
         sleep(2000);
         new Move().crON(servo1, 0.0);
-        new Move().left(motor0, motor1, motor2, motor3);
+        new Move().right(motor0, motor1, motor2, motor3);
         sleep(1800);
         new Move().stop(motor0, motor1, motor2, motor3);
         new Move().forward(motor0, motor1, motor2, motor3);
@@ -81,10 +76,5 @@ public class LinearAutoRight extends LinearOpMode{
         new Move().back(motor0, motor1, motor2, motor3);
         sleep(2000);
         new Move().stop(motor0, motor1, motor2, motor3);
-
-
-
-
-
     }
 }
