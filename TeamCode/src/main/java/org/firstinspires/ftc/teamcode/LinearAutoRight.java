@@ -27,6 +27,10 @@ public class LinearAutoRight extends LinearOpMode{
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
+        motor0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         servo1 = hardwareMap.servo.get("servo1");
         range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
         ColorSensor colorSensor = hardwareMap.colorSensor.get("color0");
