@@ -16,6 +16,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
@@ -44,6 +45,7 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorBackRight;
     private DcMotor motorBackLeft;
     private DcMotor arm;
+    private TouchSensor touch1;
     private ColorSensor color0;
     private Servo claw;
     Servo crServo0;
@@ -85,6 +87,7 @@ public class ConceptHolonomicDrive extends OpMode {
         //crServo0 = hardwareMap.servo.get("servo0");
         arm = hardwareMap.dcMotor.get("motor4");
         claw = hardwareMap.servo.get("servo1");
+        touch1 = hardwareMap.touchSensor.get("touch0");
 
 
     }
@@ -111,7 +114,7 @@ public class ConceptHolonomicDrive extends OpMode {
         if ((gamepad2.left_bumper))  new Move().arm(1.0, claw);
         else if (gamepad2.right_bumper) new Move().arm(0.0, claw);
         if ((gamepad2.dpad_up))  arm.setPower(0.4);
-        else if (gamepad2.dpad_down) arm.setPower(-0.4);
+        else if (gamepad2.dpad_down && !touch1.isPressed()) arm.setPower(-0.4);
         else  arm.setPower(0.0);
 
         motorFrontRight.setPower(FrontRight);
