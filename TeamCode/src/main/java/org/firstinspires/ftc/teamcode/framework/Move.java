@@ -80,6 +80,9 @@ public class Move {
     public void closeClaw(CRServo servo0){
         servo0.setPower(1.0);
     }
+    public void arm(double pos, Servo servo){
+        servo.setPosition(pos);
+    }
     public void stopPlate(DcMotor crServo){
         crServo.setPower(0.0);
     }

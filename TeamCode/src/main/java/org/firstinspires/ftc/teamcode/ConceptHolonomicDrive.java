@@ -45,8 +45,8 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorBackLeft;
     private DcMotor arm;
     private ColorSensor color0;
-    private CRServo claw;
-    CRServo crServo0;
+    private Servo claw;
+    Servo crServo0;
 
 
    // DcMotor motorMotorarm;
@@ -77,14 +77,10 @@ public class ConceptHolonomicDrive extends OpMode {
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackRight = hardwareMap.dcMotor.get("motor2");
         color0 = hardwareMap.colorSensor.get("color0");
-        motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
         //motor4 = hardwareMap.dcMotor.get("motor4");
-        crServo0 = hardwareMap.crservo.get("servo0");
+        crServo0 = hardwareMap.servo.get("servo0");
         arm = hardwareMap.dcMotor.get("motor4");
-        claw = hardwareMap.crservo.get("servo1");
+        claw = hardwareMap.servo.get("servo1");
 
 
     }
@@ -106,12 +102,10 @@ public class ConceptHolonomicDrive extends OpMode {
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        if (gamepad2.x) new Move().crON(crServo0, 1.0);
-        else if(gamepad2.y) new Move().crON(crServo0, -1.0);
-        else new Move().crON(crServo0, 0.0);
-        if ((gamepad2.dpad_left))  new Move().crON(claw, 1.0);
-        else if (gamepad2.dpad_right) new Move().crON(claw, -1.0);
-        else  new Move().crON(claw, 0.0);
+        if (gamepad2.x) new Move().arm(1.0, crServo0);
+        if(gamepad2.y) new Move().arm(0.0, crServo0);
+        if ((gamepad2.left_bumper))  new Move().arm(1.0, claw);
+        else if (gamepad2.right_bumper) new Move().arm(0.0, claw);
         if ((gamepad2.dpad_up))  arm.setPower(0.4);
         else if (gamepad2.dpad_down) arm.setPower(-0.4);
         else  arm.setPower(0.0);
@@ -128,7 +122,6 @@ public class ConceptHolonomicDrive extends OpMode {
         /*
          * Telemetry for debugging
          */
-
         telemetry.addData("Text", "*** Robot Data***");
         telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " +
                 String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightX));
