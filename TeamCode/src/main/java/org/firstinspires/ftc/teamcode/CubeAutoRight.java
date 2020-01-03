@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -18,6 +19,7 @@ import org.firstinspires.ftc.teamcode.framework.Move;
 
 import java.util.Timer;
 import java.util.TimerTask;
+@Disabled
 @Autonomous(name = "Cube right")
 public class CubeAutoRight extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;

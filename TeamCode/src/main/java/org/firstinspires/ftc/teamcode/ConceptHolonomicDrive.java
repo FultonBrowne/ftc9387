@@ -73,12 +73,16 @@ public class ConceptHolonomicDrive extends OpMode {
 
 
         motorFrontRight = hardwareMap.dcMotor.get("motor3");
+        motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
+        motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
+        motorBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBackRight = hardwareMap.dcMotor.get("motor2");
+        motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         color0 = hardwareMap.colorSensor.get("color0");
         //motor4 = hardwareMap.dcMotor.get("motor4");
-        crServo0 = hardwareMap.servo.get("servo0");
+        //crServo0 = hardwareMap.servo.get("servo0");
         arm = hardwareMap.dcMotor.get("motor4");
         claw = hardwareMap.servo.get("servo1");
 
@@ -102,8 +106,8 @@ public class ConceptHolonomicDrive extends OpMode {
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        if (gamepad2.x) new Move().arm(1.0, crServo0);
-        if(gamepad2.y) new Move().arm(0.0, crServo0);
+        //if (gamepad2.x) new Move().arm(1.0, crServo0);
+        //if(gamepad2.y) new Move().arm(0.0, crServo0);
         if ((gamepad2.left_bumper))  new Move().arm(1.0, claw);
         else if (gamepad2.right_bumper) new Move().arm(0.0, claw);
         if ((gamepad2.dpad_up))  arm.setPower(0.4);

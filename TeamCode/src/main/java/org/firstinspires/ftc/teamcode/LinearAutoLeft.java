@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
@@ -21,7 +22,7 @@ public class LinearAutoLeft extends LinearOpMode
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
-        CRServo servo1 = hardwareMap.crservo.get("servo1");
+        Servo servo1 = hardwareMap.servo.get("servo1");
         ModernRoboticsI2cRangeSensor range0 = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "range0");
         ColorSensor colorSensor = hardwareMap.colorSensor.get("color0");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -57,9 +58,8 @@ public class LinearAutoLeft extends LinearOpMode
         new Move().forward(motor0, motor1, motor2, motor3);
         sleep(700);
         new Move().stop(motor0, motor1, motor2, motor3);
-        new Move().openClaw(servo1);
+        new Move().arm(1.0, servo1);
         sleep(2000);
-        new Move().crON(servo1, 0.0);
         new Move().right(motor0, motor1, motor2, motor3);
         sleep(1800);
         new Move().stop(motor0, motor1, motor2, motor3);
