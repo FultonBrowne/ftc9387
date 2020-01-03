@@ -86,6 +86,7 @@ public class ConceptHolonomicDrive extends OpMode {
         //motor4 = hardwareMap.dcMotor.get("motor4");
         //crServo0 = hardwareMap.servo.get("servo0");
         arm = hardwareMap.dcMotor.get("motor4");
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         claw = hardwareMap.servo.get("servo1");
         touch1 = hardwareMap.touchSensor.get("touch0");
 
@@ -129,6 +130,7 @@ public class ConceptHolonomicDrive extends OpMode {
         /*
          * Telemetry for debugging
          */
+        telemetry.addData(String.valueOf(touch1.isPressed()), "");
         telemetry.addData("Text", "*** Robot Data***");
         telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " +
                 String.format("%.2f", gamepad1LeftY) + " " +  String.format("%.2f", gamepad1RightX));
