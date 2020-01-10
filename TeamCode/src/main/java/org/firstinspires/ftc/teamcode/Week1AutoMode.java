@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,6 +12,7 @@ import org.firstinspires.ftc.teamcode.framework.Move;
 import java.util.Timer;
 import java.util.TimerTask;
 @Autonomous(name ="AutoMode")
+@Disabled
 public class Week1AutoMode extends OpMode {
     private DcMotor motor0, motor1, motor2, motor3;
     private ColorSensor colorSensor;

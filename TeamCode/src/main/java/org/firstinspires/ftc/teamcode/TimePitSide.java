@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import java.util.TimerTask;
@@ -8,6 +9,7 @@ import java.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @Autonomous (name="pit", group="Autonomous")
+@Disabled
 public class TimePitSide extends OpMode {
  public DcMotor motor0, motor1, motor2, motor3, motor4;
     public Servo servo0;
