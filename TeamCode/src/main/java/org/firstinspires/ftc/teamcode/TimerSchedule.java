@@ -28,6 +28,7 @@ import com.qualcomm.robotcore.hardware.I2cDevice;
 
 
 @Autonomous (name="depo", group="Autonomous")
+@Disabled
 
 public class TimerSchedule extends OpMode {
 

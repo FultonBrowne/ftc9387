@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -11,41 +10,53 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
-@Autonomous
+@Autonomous(name = "red")
 public class LinearAutoLeft extends LinearOpMode
 {
 
 
     @Override
     public void runOpMode() {
+        //get the motors
         DcMotor motor0 = hardwareMap.dcMotor.get("motor0");
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
+        //set break
         motor0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //servo for the arm
         Servo servo1 = hardwareMap.servo.get("servo1");
+        //sensors
         ModernRoboticsI2cRangeSensor range0 = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "range0");
-        ColorSensor colorSensor = hardwareMap.colorSensor.get("color0");
+        ColorSensor colorSensor = hardwareMap.colorSensor.get("color1");
+        //directions
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
-        servo1.setPosition(0.0);
+        //ensure position is correct
+        servo1.setPosition(1.0);
+        //move for the first time
         new Move().left(motor0, motor1, motor2, motor3);
-        sleep(2700);
+        sleep(2900);
+        //start looking for block
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running", "");
         while (true) {
+            //find the block
             boolean scan = new Color().colors(colorSensor, telemetry);
             if (scan) {
                 telemetry.addData("is true", "");
                 break;
             }
         }
+        new Move().stop(motor0, motor1, motor2, motor3);
+        sleep(2000);
+        //get the block, place it
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running", "");
         while (true) {
@@ -55,7 +66,7 @@ public class LinearAutoLeft extends LinearOpMode
                 break;
             }
         }
-        sleep(5400);
+        sleep(520);
         new Move().spinOtherWay(motor0, motor1, motor2, motor3);
         sleep(25);
         new Move().left(motor0, motor1, motor2, motor3);
@@ -63,12 +74,13 @@ public class LinearAutoLeft extends LinearOpMode
         new Move().forward(motor0, motor1, motor2, motor3);
         sleep(700);
         new Move().stop(motor0, motor1, motor2, motor3);
-        new Move().arm(1.0, servo1);
+        new Move().arm(0.0, servo1);
         sleep(2000);
         new Move().right(motor0, motor1, motor2, motor3);
         sleep(1800);
         new Move().stop(motor0, motor1, motor2, motor3);
         new Move().forward(motor0, motor1, motor2, motor3);
+        //park under the bridge
         telemetry.addData("while is running", "");
         while (true) {
             boolean scan = range0.rawUltrasonic() < 40;
@@ -79,6 +91,7 @@ public class LinearAutoLeft extends LinearOpMode
         }
         sleep(2000);
         new Move().back(motor0, motor1, motor2, motor3);
+        new Move().arm(1.0, servo1);
         sleep(2000);
         new Move().stop(motor0, motor1, motor2, motor3);
     }

@@ -48,13 +48,6 @@ public class ConceptHolonomicDrive extends OpMode {
     private TouchSensor touch1;
     private ColorSensor color0;
     private Servo claw;
-    Servo crServo0;
-
-
-   // DcMotor motorMotorarm;
-    //DcMotor motorMotorRealarm;
-    //CRServo servo1;
-    Servo servo0;
 
     /**
      * Constructor
@@ -83,8 +76,6 @@ public class ConceptHolonomicDrive extends OpMode {
         motorBackRight = hardwareMap.dcMotor.get("motor2");
         motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         color0 = hardwareMap.colorSensor.get("color0");
-        //motor4 = hardwareMap.dcMotor.get("motor4");
-        //crServo0 = hardwareMap.servo.get("servo0");
         arm = hardwareMap.dcMotor.get("motor4");
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         claw = hardwareMap.servo.get("servo1");

@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
+import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.hardware.CRServo
 import com.qualcomm.robotcore.hardware.DcMotor
 import org.firstinspires.ftc.teamcode.framework.Move
 import java.util.*
-
+@Disabled
 @Autonomous(name = "move da plate right")
 class MovePlateRight: OpMode() {
     private var motor0: DcMotor? = null; private  var motor1:DcMotor? = null;

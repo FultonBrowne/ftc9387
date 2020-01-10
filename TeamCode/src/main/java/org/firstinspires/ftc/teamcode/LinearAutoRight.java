@@ -13,7 +13,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
 
-@Autonomous
+@Autonomous(name = "red")
+
 public class LinearAutoRight extends LinearOpMode{
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -39,7 +40,7 @@ public class LinearAutoRight extends LinearOpMode{
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
-        servo1.setPosition(0.0);
+        servo1.setPosition(1.0);
         new Move().right(motor0, motor1, motor2, motor3);
         sleep(2700);
         new Move().back(motor0, motor1, motor2, motor3);
@@ -51,6 +52,8 @@ public class LinearAutoRight extends LinearOpMode{
                 break;
             }
         }
+        new Move().stop(motor0, motor1, motor2, motor3);
+        sleep(2000);
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running", "");
         while (true) {
@@ -60,7 +63,7 @@ public class LinearAutoRight extends LinearOpMode{
                 break;
             }
         }
-        sleep(5400);
+        sleep(540);
         new Move().spinOtherWay(motor0, motor1, motor2, motor3);
         sleep(25);
         new Move().right(motor0, motor1, motor2, motor3);
@@ -68,6 +71,7 @@ public class LinearAutoRight extends LinearOpMode{
         new Move().forward(motor0, motor1, motor2, motor3);
         sleep(700);
         new Move().stop(motor0, motor1, motor2, motor3);
+        new Move().arm(0.0, servo1);
         sleep(2000);
         new Move().left(motor0, motor1, motor2, motor3);
         sleep(1800);
@@ -83,6 +87,7 @@ public class LinearAutoRight extends LinearOpMode{
         }
         sleep(2000);
         new Move().back(motor0, motor1, motor2, motor3);
+        new Move().arm(1.0, servo1);
         sleep(2000);
         new Move().stop(motor0, motor1, motor2, motor3);
 
