@@ -87,36 +87,26 @@ public class ConceptHolonomicDrive extends OpMode {
     @SuppressLint("DefaultLocale")
     @Override
     public void loop() {
-
-
-        // left stick controls direction
-        // right stick X controls rotation
-
+        // formula for motor values
         float gamepad1LeftY = -gamepad1.left_stick_y;
         float gamepad1LeftX = gamepad1.left_stick_x;
         float gamepad1RightX = gamepad1.right_stick_x;
-
-
         float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float FrontRight = gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
         float BackRight = gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        //if (gamepad2.x) new Move().arm(1.0, crServo0);
-        //if(gamepad2.y) new Move().arm(0.0, crServo0);
+        // move the claw in and out
         if ((gamepad2.left_bumper))  new Move().arm(1.0, claw);
         else if (gamepad2.right_bumper) new Move().arm(0.0, claw);
-        if ((gamepad2.dpad_up))  arm.setPower(0.4);
-        else if (gamepad2.dpad_down && !touch1.isPressed()) arm.setPower(-0.4);
+        //move the arm up and down
+        if ((gamepad2.dpad_up))  arm.setPower(0.8);
+        else if (gamepad2.dpad_down && !touch1.isPressed()) arm.setPower(-0.8);
         else  arm.setPower(0.0);
-
+        //set powers
         motorFrontRight.setPower(FrontRight);
         motorFrontLeft.setPower(FrontLeft);
         motorBackLeft.setPower(BackLeft);
         motorBackRight.setPower(BackRight);
-
-        
-
-
 
         /*
          * Telemetry for debugging
