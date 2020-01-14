@@ -46,32 +46,21 @@ public class LinearAutoRight extends LinearOpMode{
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
         //move claw in correct position
-        servo1.setPosition(1.0);
         //move to blocks
         new Move().right(motor0, motor1, motor2, motor3);
-        sleep(2900);
+        sleep(2700);
         //scan for black
         new Move().back(motor0, motor1, motor2, motor3);
-        telemetry.addData("while is running", "");
-        while (true) {
-            boolean scan = new Color().colors(colorSensor, telemetry);
-            if (scan) {
-                telemetry.addData("is true", "");
-                break;
-            }
-        }
+        telemetry.addData("while is running 1", "");
+        telemetry.update();
+        Color color = new Color();
+        fiindStone(colorSensor);
         new Move().stop(motor0, motor1, motor2, motor3);
         sleep(2000);
         //find the yellow
         new Move().back(motor0, motor1, motor2, motor3);
-        telemetry.addData("while is running", "");
-        while (true) {
-            boolean scan = new Color().colors(colorSensor, telemetry);
-            if (!scan) {
-                telemetry.addData("is true", "");
-                break;
-            }
-        }
+        telemetry.addData("while is running 2", "");
+        fiindStone(colorSensor);
         //move in and get the block
         sleep(400);
         new Move().spinOtherWay(motor0, motor1, motor2, motor3);
@@ -112,4 +101,15 @@ public class LinearAutoRight extends LinearOpMode{
 
 
     }
+
+    private void fiindStone(ColorSensor colorSensor) {
+        while (true) {
+            boolean scan = new Color().colors(colorSensor, telemetry);
+            if (!scan) {
+                telemetry.addData("is true 2", "");
+                break;
+            }
+        }
+    }
+
 }

@@ -40,7 +40,6 @@ public class LinearAutoLeft extends LinearOpMode
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
         //ensure position is correct
-        servo1.setPosition(1.0);
         //move to blocks
         new Move().left(motor0, motor1, motor2, motor3);
         sleep(2900);
