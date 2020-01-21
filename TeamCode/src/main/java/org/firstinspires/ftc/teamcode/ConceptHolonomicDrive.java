@@ -44,6 +44,7 @@ public class ConceptHolonomicDrive extends OpMode {
     private DcMotor motorFrontLeft;
     private DcMotor motorBackRight;
     private DcMotor motorBackLeft;
+    private DcMotor arm2;
     private DcMotor arm;
     private TouchSensor touch1;
     private ColorSensor color0;
@@ -77,7 +78,10 @@ public class ConceptHolonomicDrive extends OpMode {
         motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         color0 = hardwareMap.colorSensor.get("color0");
         arm = hardwareMap.dcMotor.get("motor4");
+        arm2 = hardwareMap.dcMotor.get("motor5");
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         claw = hardwareMap.servo.get("servo1");
         touch1 = hardwareMap.touchSensor.get("touch0");
 
@@ -99,9 +103,9 @@ public class ConceptHolonomicDrive extends OpMode {
         if ((gamepad2.left_bumper))  new Move().arm(1.0, claw);
         else if (gamepad2.right_bumper) new Move().arm(0.0, claw);
         //move the arm up and down
-        if ((gamepad2.dpad_up))  arm.setPower(0.8);
-        else if (gamepad2.dpad_down && !touch1.isPressed()) arm.setPower(-0.8);
-        else  arm.setPower(0.0);
+        if ((gamepad2.dpad_up))  new Move().elevator(arm, arm2, 1.0);
+        else if (gamepad2.dpad_down && !touch1.isPressed()) new Move().elevator(arm, arm2, -1.0);
+        else  new Move().elevator(arm, arm2, 0.0);
         //set powers
         motorFrontRight.setPower(FrontRight);
         motorFrontLeft.setPower(FrontLeft);

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -16,7 +17,9 @@ public class OtherPlate extends LinearOpMode {
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
-        DcMotor arm = hardwareMap.dcMotor.get("motor4");
+
+        ModernRoboticsI2cRangeSensor range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
+
         //set the breaks
         motor0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -30,18 +33,28 @@ public class OtherPlate extends LinearOpMode {
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
+
         Move move = new Move();
-        move.right(motor0, motor1, motor2, motor3);
-        sleep(1000);
+        move.left(motor0, motor1, motor2, motor3);
+        sleep(2000);
         move.back(motor0, motor1, motor2, motor3);
         sleep(3000);
         move.stop(motor0, motor1, motor2, motor3);
         servo1.setPosition(0.0);
         sleep(6000);
-        move.right(motor0, motor1, motor2, motor3);
-        sleep(1000);
         move.forward(motor0, motor1, motor2, motor3);
-        sleep(5000);
-        move.stop(motor0, motor1, motor2, motor3);
+        sleep(8000);
+        servo1.setPosition(1.0);
+        move.right(motor0, motor1, motor2, motor3);
+        telemetry.addData("while is running", "");
+        while (true) {
+            boolean scan = range0.rawUltrasonic() < 40;
+            if (scan) {
+                telemetry.addData("is true", "");
+                break;
+            }
+        }
+        move.stop(motor0, motor1, motor2,motor3);
+
     }
 }

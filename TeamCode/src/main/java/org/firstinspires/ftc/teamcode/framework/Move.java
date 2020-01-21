@@ -65,12 +65,7 @@ public class Move {
         //motor0.setPower(-1.0);
         //motor2.setPower(1.0);
     }
-    public void setServoPos(Servo servo,Double pos){
-        servo.setPosition(pos);
-    }
-    public void movePlate(DcMotor crServo, Double speed){
-        crServo.setPower(speed);
-    }
+
     public void crON(CRServo crServo, double power){
         crServo.setPower(power);
     }
@@ -83,7 +78,8 @@ public class Move {
     public void arm(double pos, Servo servo){
         servo.setPosition(pos);
     }
-    public void stopPlate(DcMotor crServo){
-        crServo.setPower(0.0);
+    public void elevator(DcMotor motor0, DcMotor motor1, Double speed){
+        motor0.setPower(speed);
+        motor1.setPower(speed);
     }
 }

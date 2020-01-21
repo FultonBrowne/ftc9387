@@ -33,18 +33,30 @@ public class Plate extends LinearOpMode {
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
+        ModernRoboticsI2cRangeSensor range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
+
         Move move = new Move();
         move.right(motor0, motor1, motor2, motor3);
-        sleep(1000);
+        sleep(2000);
         move.back(motor0, motor1, motor2, motor3);
         sleep(3000);
         move.stop(motor0, motor1, motor2, motor3);
         servo1.setPosition(0.0);
         sleep(6000);
-        move.right(motor0, motor1, motor2, motor3);
-        sleep(1000);
         move.forward(motor0, motor1, motor2, motor3);
-        sleep(5000);
+        sleep(8000);
+        servo1.setPosition(1.0);
+        move.left(motor0, motor1, motor2, motor3);
+        telemetry.addData("while is running", "");
+        while (true) {
+            boolean scan = range0.rawUltrasonic() < 40;
+            if (scan) {
+                telemetry.addData("is true", "");
+                break;
+            }
+        }
         move.stop(motor0, motor1, motor2, motor3);
+
+
     }
 }
