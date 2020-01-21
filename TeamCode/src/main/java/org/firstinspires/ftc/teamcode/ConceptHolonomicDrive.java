@@ -115,6 +115,8 @@ public class ConceptHolonomicDrive extends OpMode {
         /*
          * Telemetry for debugging
          */
+        telemetry.addData("", motorFrontLeft.getCurrentPosition());
+        telemetry.addData("", motorBackLeft.getCurrentPosition());
         telemetry.addData(String.valueOf(touch1.isPressed()), "");
         telemetry.addData("Text", "*** Robot Data***");
         telemetry.addData("Joy XL YL XR",  String.format("%.2f", gamepad1LeftX) + " " +
