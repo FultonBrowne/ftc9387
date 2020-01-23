@@ -23,6 +23,7 @@ public class AutoEncoder extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         //get the motors
         DcMotor motor0 = hardwareMap.dcMotor.get("motor0");
+        motor0.setMode(DcMotor.RunMode.RESET_ENCODERS);
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
@@ -45,7 +46,7 @@ public class AutoEncoder extends LinearOpMode {
         //move claw in correct position
         //move to blocks
         new Move().right(motor0, motor1, motor2, motor3);
-        sleep(2700);
+        while (motor0.getCurrentPosition() < 60000)
         //scan for black
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running 1", "");
