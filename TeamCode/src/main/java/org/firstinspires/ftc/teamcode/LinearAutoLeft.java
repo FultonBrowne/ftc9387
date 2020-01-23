@@ -22,6 +22,7 @@ public class LinearAutoLeft extends LinearOpMode
         DcMotor motor1 = hardwareMap.dcMotor.get("motor1");
         DcMotor motor2 = hardwareMap.dcMotor.get("motor2");
         DcMotor arm = hardwareMap.dcMotor.get("motor4");
+        DcMotor arm2 = hardwareMap.dcMotor.get("motor5");
         DcMotor motor3 = hardwareMap.dcMotor.get("motor3");
         //set break
         motor0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -77,9 +78,9 @@ public class LinearAutoLeft extends LinearOpMode
         new Move().stop(motor0, motor1, motor2, motor3);
         new Move().arm(0.0, servo1);
         sleep(2000);
-        arm.setPower(1.0);
+        new Move().elevator(arm, arm2, 0.5);
         sleep(450);
-        arm.setPower(0.0);
+        new Move().elevator(arm, arm2, 0.0);
         //move out with block
         new Move().right(motor0, motor1, motor2, motor3);
         sleep(2100);
