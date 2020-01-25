@@ -31,6 +31,7 @@ public class LinearAutoRight extends LinearOpMode{
         DcMotor arm = hardwareMap.dcMotor.get("motor4");
         DcMotor arm2 = hardwareMap.dcMotor.get("motor5");
 
+
         //set the breaks
         motor0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

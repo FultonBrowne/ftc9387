@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
-@Autonomous(name = "blue encode")
-public class AutoEncoder extends LinearOpMode {
+@Autonomous(name = "red encode")
+public class AutoEncoder1 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     public ModernRoboticsI2cRangeSensor range0;
@@ -53,7 +53,7 @@ public class AutoEncoder extends LinearOpMode {
         waitForStart();
         //move claw in correct position
         //move to blocks
-        new Move().right(motor0, motor1, motor2, motor3);
+        new Move().left(motor0, motor1, motor2, motor3);
         while (motor0.getCurrentPosition() > -32000);
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running 1", "");
@@ -67,9 +67,9 @@ public class AutoEncoder extends LinearOpMode {
         fiindStone2(colorSensor, color);
         //move in and get the block
         sleep(400);
-        new Move().spinOtherWay(motor0, motor1, motor2, motor3);
+        new Move().spin(motor0, motor1, motor2, motor3);
         sleep(25);
-        new Move().right(motor0, motor1, motor2, motor3);
+        new Move().left(motor0, motor1, motor2, motor3);
         sleep(1300);
         new Move().forward(motor0, motor1, motor2, motor3);
         sleep(700);
@@ -80,7 +80,7 @@ public class AutoEncoder extends LinearOpMode {
         sleep(250);
         new Move().elevator(arm, arm2, 0.0);
         // pull out
-        new Move().left(motor0, motor1, motor2, motor3);
+        new Move().right(motor0, motor1, motor2, motor3);
         sleep(2100);
         new Move().stop(motor0, motor1, motor2, motor3);
         //find the over hang
@@ -120,3 +120,4 @@ public class AutoEncoder extends LinearOpMode {
     }
 
 }
+

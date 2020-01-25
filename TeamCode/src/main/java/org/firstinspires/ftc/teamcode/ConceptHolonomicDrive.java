@@ -72,6 +72,8 @@ public class ConceptHolonomicDrive extends OpMode {
         motorFrontRight = hardwareMap.dcMotor.get("motor3");
         motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFrontLeft = hardwareMap.dcMotor.get("motor0");
+        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBackLeft = hardwareMap.dcMotor.get("motor1");
         motorBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
