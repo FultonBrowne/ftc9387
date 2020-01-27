@@ -11,6 +11,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.framework.Color;
 import org.firstinspires.ftc.teamcode.framework.Move;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 @Autonomous(name = "red encode")
 public class AutoEncoder1 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
@@ -43,7 +47,7 @@ public class AutoEncoder1 extends LinearOpMode {
         servo1 = hardwareMap.servo.get("servo1");
         //sensors
         range0 = hardwareMap.get( ModernRoboticsI2cRangeSensor.class,"range0");
-        ColorSensor colorSensor = hardwareMap.colorSensor.get("color0");
+        ColorSensor colorSensor = hardwareMap.colorSensor.get("color1");
         motor0.setDirection(DcMotorSimple.Direction.REVERSE);
         motor0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -51,10 +55,12 @@ public class AutoEncoder1 extends LinearOpMode {
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
+        new Move().arm(1.0, servo1);
+
         //move claw in correct position
         //move to blocks
         new Move().left(motor0, motor1, motor2, motor3);
-        while (motor0.getCurrentPosition() > -32000);
+        while (motor0.getCurrentPosition() <38000);
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running 1", "");
         telemetry.update();
@@ -107,13 +113,15 @@ public class AutoEncoder1 extends LinearOpMode {
     }
 
     private void fiindStone(ColorSensor colorSensor, Color color) {
-        while (!color.colors(colorSensor, telemetry)) {
+        long currentTimeMillis = System.currentTimeMillis() + 4000;
+        while (!color.colors(colorSensor, telemetry) || currentTimeMillis < System.currentTimeMillis() ) {
             telemetry.addData("is true 2", "");
 
         }
     }
     private void fiindStone2(ColorSensor colorSensor, Color color) {
-        while (color.colors(colorSensor, telemetry)) {
+        long currentTimeMillis = System.currentTimeMillis() + 2000;
+        while (color.colors(colorSensor, telemetry) || currentTimeMillis < System.currentTimeMillis()) {
             telemetry.addData("is true 2", "");
 
         }

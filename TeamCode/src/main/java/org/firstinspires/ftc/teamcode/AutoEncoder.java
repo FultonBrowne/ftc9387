@@ -54,7 +54,9 @@ public class AutoEncoder extends LinearOpMode {
         //move claw in correct position
         //move to blocks
         new Move().right(motor0, motor1, motor2, motor3);
-        while (motor0.getCurrentPosition() > -32000);
+        while (motor0.getCurrentPosition() > -38000);
+        new Move().arm(1.0, servo1);
+
         new Move().back(motor0, motor1, motor2, motor3);
         telemetry.addData("while is running 1", "");
         telemetry.update();
@@ -107,13 +109,15 @@ public class AutoEncoder extends LinearOpMode {
     }
 
     private void fiindStone(ColorSensor colorSensor, Color color) {
-        while (!color.colors(colorSensor, telemetry)) {
+        long currentTimeMillis = System.currentTimeMillis() + 3000;
+        while (!color.colors(colorSensor, telemetry) || currentTimeMillis < System.currentTimeMillis() ) {
             telemetry.addData("is true 2", "");
 
         }
     }
     private void fiindStone2(ColorSensor colorSensor, Color color) {
-        while (color.colors(colorSensor, telemetry)) {
+        long currentTimeMillis = System.currentTimeMillis() + 3000;
+        while (color.colors(colorSensor, telemetry) || currentTimeMillis < System.currentTimeMillis()) {
             telemetry.addData("is true 2", "");
 
         }
