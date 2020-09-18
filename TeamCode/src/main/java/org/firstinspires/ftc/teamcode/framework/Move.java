@@ -107,10 +107,10 @@ public class Move {
           DcMotor motor3,
           double speed
       ){
-        motor0.setPower(0.5);
-        motor1.setPower(0.5);
-        motor2.setPower(-0.5);
-        motor3.setPower(-0.5);
+        motor0.setPower(speed);
+        motor1.setPower(speed);
+        motor2.setPower(-speed);
+        motor3.setPower(-speed);
         //motor1.setPower(-1.0);
         //motor3.setPower(1.0);
         ;
@@ -123,10 +123,10 @@ public class Move {
           double speed
 
    ){
-        motor0.setPower(0.5);
-        motor1.setPower(0.5);
-        motor2.setPower(0.5);
-        motor3.setPower(0.5);
+        motor0.setPower(speed);
+        motor1.setPower(speed);
+        motor2.setPower(speed);
+        motor3.setPower(speed);
         //motor1.setPower(-1.0);
         //motor3.setPower(1.0);
         ;
@@ -139,10 +139,10 @@ public class Move {
           double speed
 
    ){
-        motor0.setPower(-0.5);
-        motor1.setPower(-0.5);
-        motor2.setPower(-0.5);
-        motor3.setPower(-0.5);
+        motor0.setPower(-speed);
+        motor1.setPower(-speed);
+        motor2.setPower(-speed);
+        motor3.setPower(-speed);
         //motor1.setPower(-1.0);
         //motor3.setPower(1.0);
         ;
@@ -154,10 +154,10 @@ public class Move {
           double speed
 
    ){
-        motor0.setPower(-0.5);
-        motor1.setPower(-0.5);
-        motor2.setPower(0.5);
-        motor3.setPower(0.5);
+        motor0.setPower(-speed);
+        motor1.setPower(-speed);
+        motor2.setPower(speed);
+        motor3.setPower(speed);
         //motor1.setPower(1.0);
         //motor3.setPower(-1.0);
     }
@@ -169,10 +169,10 @@ public class Move {
 
    ){
 
-        motor0.setPower(0.5);
-        motor1.setPower(-0.5);
-        motor2.setPower(-0.5);
-        motor3.setPower(0.5);
+        motor0.setPower(speed);
+        motor1.setPower(-speed);
+        motor2.setPower(-speed);
+        motor3.setPower(speed);
         //motor0.setPower(1.0);
         //motor2.setPower(-1.0);
     }
@@ -183,10 +183,10 @@ public class Move {
           double speed
 
    ){
-        motor0.setPower(-0.5);
-        motor1.setPower(0.5);
-        motor2.setPower(0.5);
-        motor3.setPower(-0.5);
+        motor0.setPower(-speed);
+        motor1.setPower(speed);
+        motor2.setPower(speed);
+        motor3.setPower(-speed);
         //motor0.setPower(-1.0);
         //motor2.setPower(1.0);
     }
