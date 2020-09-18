@@ -65,4 +65,8 @@ class AutoFramework(
       return 0
    }
 
+   fun initMove(){
+      //TODO
+   }
+
 }

@@ -35,6 +35,19 @@ class AutoBlue : OpMode() {
 
    override fun start(){
       autotools!!
+      autotools!!.initMove()
+      val height = autotools!!.height()
+      if (height == 2.toShort()){
+
+      }
+
+      else if (height == 1.toShort()){
+
+      }
+
+      else {
+
+      }
 
    }
 }
