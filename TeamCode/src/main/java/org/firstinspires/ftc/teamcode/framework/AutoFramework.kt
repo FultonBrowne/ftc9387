@@ -60,4 +60,9 @@ class AutoFramework(
 
    }
 
+   fun height(): Short{
+      // this will return 0, 1, or 2
+      return 0
+   }
+
 }
