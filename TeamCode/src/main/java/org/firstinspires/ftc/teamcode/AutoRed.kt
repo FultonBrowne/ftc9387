@@ -13,4 +13,8 @@ class AutoRed : OpMode() {
 
    }
 
+   override fun start(){
+
+   }
+
 }

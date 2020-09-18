@@ -13,4 +13,8 @@ class AutoBlue : OpMode() {
    override fun loop(){
 
    }
+
+   override fun start(){
+
+   }
 }
