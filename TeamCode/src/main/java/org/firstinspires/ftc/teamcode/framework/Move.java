@@ -20,7 +20,6 @@ public class Move {
         motor2.setPower(0.0);
         motor3.setPower(0.0);
     }
-    // TODO add speed params
     public void forward(DcMotor motor0,
           DcMotor motor1,
           DcMotor motor2,

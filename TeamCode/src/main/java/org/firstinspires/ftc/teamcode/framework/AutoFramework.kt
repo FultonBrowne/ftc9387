@@ -10,23 +10,53 @@ class AutoFramework(
    val motor2:DcMotor,
    val motor3:DcMotor
 ){
+   val move = Move()
    fun forward(){
-
+      move.forward(
+         motor0,
+         motor1,
+         motor2,
+         motor3
+      )
    }
 
    fun left(){
+      move.left(
+         motor0,
+         motor1,
+         motor2,
+         motor3
+      )
 
    }
 
    fun right(){
+      move.right(
+         motor0,
+         motor1,
+         motor2,
+         motor3
+      )
 
    }
 
    fun back(){
+      move.back(
+         motor0,
+         motor1,
+         motor2,
+         motor3
+      )
 
    }
 
    fun stop(){
+      move.stop(
+         motor0,
+         motor1,
+         motor2,
+         motor3
+      )
 
    }
 
