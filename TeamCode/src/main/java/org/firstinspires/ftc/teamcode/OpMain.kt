@@ -16,6 +16,10 @@ class OpMain : OpMode() {
         motor1 = hardwareMap.dcMotor["motor1"]
         motor2 = hardwareMap.dcMotor["motor2"]
         motor3 = hardwareMap.dcMotor["motor3"]
+        motor0!!.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
+        motor1!!.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
+        motor2!!.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
+        motor3!!.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
    }
 
    override fun loop(){
