@@ -105,7 +105,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
       ){
         motor0.setPower(speed);
         motor1.setPower(speed);
@@ -120,7 +120,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
 
    ){
         motor0.setPower(speed);
@@ -136,7 +136,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
 
    ){
         motor0.setPower(-speed);
@@ -151,7 +151,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
 
    ){
         motor0.setPower(-speed);
@@ -165,7 +165,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
 
    ){
 
@@ -180,7 +180,7 @@ public class Move {
           DcMotor motor1,
           DcMotor motor2,
           DcMotor motor3,
-          double speed
+          float speed
 
    ){
         motor0.setPower(-speed);
