@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode.framework
+import com.qualcomm.robotcore.hardware.*
 /**
 * Shared code for auto modes
 * GPL 3.0 licensed
