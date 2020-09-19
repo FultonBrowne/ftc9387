@@ -62,6 +62,8 @@ class OpMain : OpMode() {
          )
       }
 
+      if(gamepad1.left_trigger){}
+
    }
 
 
