@@ -38,10 +38,19 @@ class AutoBlue : OpMode() {
       autotools!!.initMove()
       val height = autotools!!.height()
       if (height == 2.toShort()){
-
+         autotools!!.forward()
+         Thread.sleep(15000)
+         autotools!!.stop()
+         autotools!!.drop()
+         // autotools!!.roll() - gahhhhhhh I'm funny
+         // autotools.spinDropSpin()
       }
 
       else if (height == 1.toShort()){
+         autotools!!.forward()
+         Thread.sleep(7500)
+         autotools!!.right()
+         Thread.sleep(2000)
 
       }
 

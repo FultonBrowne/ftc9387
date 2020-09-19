@@ -69,4 +69,12 @@ class AutoFramework(
       //TODO
    }
 
+   fun spinDropSpin(){
+
+   }
+
+   fun drop(){
+
+   }
+
 }
