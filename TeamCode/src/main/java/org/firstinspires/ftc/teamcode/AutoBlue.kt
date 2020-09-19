@@ -51,10 +51,19 @@ class AutoBlue : OpMode() {
          Thread.sleep(7500)
          autotools!!.right()
          Thread.sleep(2000)
-
+         autotools!!.stop
+         autotools!!.drop()
+         // autotools!!.roll() - gahhhhhhh I'm funny
+         // autotools.spinDropSpin()
       }
 
       else {
+         autotools!!.forward()
+         Thread.sleep(3000)
+         autotools!!.stop()
+         autotools!!.drop()
+         // autotools!!.roll() - gahhhhhhh I'm funny
+         // autotools.spinDropSpin()
 
       }
 
