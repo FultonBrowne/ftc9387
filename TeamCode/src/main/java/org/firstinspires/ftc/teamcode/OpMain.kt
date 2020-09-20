@@ -34,6 +34,7 @@ class OpMain : OpMode() {
 
 
       }
+
       else if(gamepad1.left_stick_x > 0.1 || gamepad1.left_stick_x < -0.1){
          move.left(
             motor0, 
@@ -44,6 +45,7 @@ class OpMain : OpMode() {
          )
 
       }
+
       else if(gamepad1.right_stick_x > 0.1 || gamepad1.right_stick_x < -0.1){
          move.spin(
             motor0,
@@ -53,6 +55,7 @@ class OpMain : OpMode() {
             gamepad1.right_stick_x
          )
       }
+
       else{
          move.stop(
             motor0, 
@@ -62,7 +65,31 @@ class OpMain : OpMode() {
          )
       }
 
-      if(gamepad1.left_trigger){}
+      if(gamepad1.y){
+         //TODO load
+      }
+
+      if(gamepad1.a){
+         //TODO FIRE!!!!!
+      }
+
+      if(gamepad1.b){
+         //TODO pick up goal
+      }
+
+      else if (gamepad1.x){
+         //TODO unload goal
+      }
+
+
+      if(gamepad1.left_bumper){
+         move.stop(
+            motor0, 
+            motor1,
+            motor2,
+            motor3
+         )
+      }
 
    }
 
