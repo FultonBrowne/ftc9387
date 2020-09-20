@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.framework;
 
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.*;
 
 /**
  * Base framework for movement
@@ -211,5 +209,10 @@ public class Move {
       ){
         motor0.setPower(speed);
         motor1.setPower(speed);
+    }
+    public void moveAutoStop(DcMotor motor, TouchSensor sensor, float speed){
+      motor.setPower(speed);
+       while(!sensor.isPressed()){}
+       motor.setPower(0.0);
     }
 }
