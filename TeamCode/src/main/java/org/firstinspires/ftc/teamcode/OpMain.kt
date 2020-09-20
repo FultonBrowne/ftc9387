@@ -65,6 +65,14 @@ class OpMain : OpMode() {
          )
       }
 
+      if(gamepad1.right_trigger > 0.1){
+         //TODO variable fire
+      }
+
+      else{
+         //TODO stop variable fire
+      }
+
       if(gamepad1.y){
          //TODO load
       }
